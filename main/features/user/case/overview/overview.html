@@ -1,11 +1,81 @@
 <section>
-    <ul>
-        <li>Definition: {{ case.definitionId }}</li>
-        <li>Instance: {{ case.instanceId }}</li>
-    </ul>
+    <h3>Overview</h3>
+
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="dl-horizontal">
+                <dt>Name</dt>
+                <dd>{{ case.processDefinitionId.displayName }}</dd>
+                <dt>Version</dt>
+                <dd>{{ case.processDefinitionId.version }}</dd>
+                <dt>Deployed On</dt>
+                <dd>{{ case.processDefinitionId.deploymentDate}}</dd>
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <dl class="dl-horizontal">
+                <dt>Id</dt>
+                <dd>{{ case.id }}</dd>
+                <dt>Started On</dt>
+                <dd>{{ case.start }}</dd>
+                <dt>State</dt>
+                <dd>{{ case.state }}</dd>
+            </dl>
+        </div>
+    </div>
 </section>
 
-<bpmn definition-id="case.definitionId" instance-id="case.instanceId" name="'Pool'"></bpmn>
+<section class="middle">
+    <h3>Diagram</h3>
+    <bpmn definition-id="context.definitionId" instance-id="context.instanceId" name="'Pool'"
+          on-click="updateDetails"></bpmn>
+</section>
+
+<section class="middle" ng-show="journal.pagination.total > 0 || archives.pagination.total > 0">
+    <h3>Details for {{ flownode }}</h3>
+    <section ng-show="journal.pagination.total > 0">
+        <h4>Journal</h4>
+        <table class="table">
+            <tr>
+                <th>State</th>
+                <th>Reached On</th>
+                <th>Priority</th>
+                <th>Executed By</th>
+                <th>Actor</th>
+                <th>Assigned to</th>
+            </tr>
+            <tr ng-repeat="flownode in journal.result">
+                <td>{{ flownode.state }}</td>
+                <td>{{ flownode.reached_state_date }}</td>
+                <td>{{ flownode.priority }}</td>
+                <td>{{ flownode.executedBy }}</td>
+                <td>{{ flownode.actorId.displayName }}</td>
+                <td>{{ flownode.assigned_id }}</td>
+            </tr>
+        </table>
+    </section>
+    <section ng-show="archives.pagination.total > 0">
+        <h4>Archives</h4>
+        <table class="table">
+            <tr>
+                <th>State</th>
+                <th>Reached On</th>
+                <th>Priority</th>
+                <th>Executed By</th>
+                <th>Actor</th>
+                <th>Assigned to</th>
+            </tr>
+            <tr ng-repeat="flownode in archives.result">
+                <td>{{ flownode.state }}</td>
+                <td>{{ flownode.reached_state_date }}</td>
+                <td>{{ flownode.priority }}</td>
+                <td>{{ flownode.executedBy }}</td>
+                <td>{{ flownode.actorId.displayName }}</td>
+                <td>{{ flownode.assigned_id }}</td>
+            </tr>
+        </table>
+    </section>
+</section>
 
 <script src="assets/process-tracking/app/assets/jquery-2.1.1.min.js"></script>
 <script src="assets/process-tracking/app/assets/Snap.svg-0.3.0/dist/snap.svg-min.js"></script>

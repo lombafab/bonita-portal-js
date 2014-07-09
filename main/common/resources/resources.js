@@ -80,9 +80,19 @@
             return $resource(API_PATH + 'bpm/process/:id', { id: '@id' });
         }])
 
+
+        .factory('FlowNode', ['$resource', function ($resource) {
+            return $resource(API_PATH + 'bpm/flowNode/:id', { id: '@id' });
+        }])
+
+        .factory('ArchivedFlowNode', ['$resource', function ($resource) {
+            return $resource(API_PATH + 'bpm/archivedFlowNode/:id', { id: '@id' });
+        }])
+
         .factory('HumanTask', ['$resource', function ($resource) {
             return $resource(API_PATH + 'bpm/humanTask/:id', { id: '@id' });
         }])
+
         .factory('I18N', ['$resource', function ($resource) {
             return $resource(API_PATH + 'system/i18ntranslation/');
         }])

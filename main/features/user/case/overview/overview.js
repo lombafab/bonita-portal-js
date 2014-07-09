@@ -16,20 +16,46 @@
                 controller: 'overviewCtrl'
             });
         }])
-        .controller('overviewCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
-            $scope.case = $stateParams;
+        .controller('overviewCtrl', ['$scope', '$stateParams', 'Case', 'FlowNode', 'ArchivedFlowNode', function ($scope, $stateParams, Case, FlowNode, ArchivedFlowNode) {
+            $scope.context = $stateParams;
+            $scope.case = Case.get({ id: $scope.context.instanceId, d: 'processDefinitionId' });
+            $scope.updateDetails = function(shape) {
+                return function(event) {
+                    event.target.classList.add('highlight')
+                    $scope.journal = FlowNode.search({
+                        p: 0,
+                        c: 10,
+                        f: ["name=" + shape.name, "processId=" + $scope.context.definitionId],
+                        d: ['actorId', 'assigned_id']
+                    });
+                    $scope.archives = ArchivedFlowNode.search({
+                        p: 0,
+                        c: 10,
+                        f: ["name=" + shape.name, "processId=" + $scope.context.definitionId],
+                        d: ['actorId', 'assigned_id']
+                    });
+                    function updateDisplayedName(flownodes) {
+                        if (flownodes.result.length > 0) {
+                            $scope.flownode = flownodes.result[0].displayName;
+                        }
+                    }
+                    $scope.journal.$promise.then(updateDisplayedName);
+                    $scope.archives.$promise.then(updateDisplayedName);
+                };
+            };
         }])
-        .directive('bpmn', function() {
+        .directive('bpmn', function () {
             return {
                 restrict: 'E',
                 scope: {
                     definitionId: '=',
                     instanceId: '=',
-                    name: '='
+                    name: '=',
+                    onClick: '='
                 },
-                template: '<svg id="bpmn-diagram" style="height:100%;width:100%"><defs></defs></svg>',
-                link: function(scope) {
-                    new bonitasoft.BBPMN("assets/process-tracking/app/assets/studioFigures/").bootstrap(scope.definitionId, scope.instanceId, scope.name);
+                template: '<svg id="bpmn-diagram" style="width: 100%; margin-bottom: 20px"><defs></defs></svg>',
+                link: function (scope) {
+                    new bonitasoft.BBPMN("assets/process-tracking/app/assets/studioFigures/").bootstrap(scope.definitionId, scope.instanceId, scope.name, scope.onClick);
                 }
             };
         });

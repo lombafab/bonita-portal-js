@@ -92,3 +92,36 @@ body {
     stroke: black;
     fill: none;
 }
+
+h3 {
+    font-weight: bold;
+    color: #b20706;
+    margin-bottom: 20px;
+}
+
+section.middle {
+    border-top: 1px solid #c2c2c2;
+}
+
+@font-face {
+    font-family: 'Signika-Semibold';
+    src: url("themeResource?theme=portal&location=skin/fonts/Signika-Semibold.eot");
+    src: local('☺'), url("themeResource?theme=portal&location=skin/fonts/Signika-Semibold.woff") format('woff'), url("themeResource?theme=portal&location=skin/fonts/Signika-Semibold.ttf") format('truetype'), url("themeResource?theme=portal&location=skin/fonts/Signika-Semibold.svg") format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    font-family: "Signika-Semibold", sans-serif, sans-serif;
+    font-size: 100%;
+    color: #6e6f6b;
+}
+
+.highlight {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: flash;
+    animation-name: flash;
+}
