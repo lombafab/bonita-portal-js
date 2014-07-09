@@ -1,1 +1,20 @@
-<h1>Here goes the overview for the case {{ case.id }}</h1>
+<section>
+    <ul>
+        <li>Definition: {{ case.definitionId }}</li>
+        <li>Instance: {{ case.instanceId }}</li>
+    </ul>
+</section>
+
+<bpmn definition-id="case.definitionId" instance-id="case.instanceId" name="Pool"></bpmn>
+
+<script src="assets/process-tracking/app/assets/jquery-2.1.1.min.js"></script>
+<script src="assets/process-tracking/app/assets/Snap.svg-0.3.0/dist/snap.svg-min.js"></script>
+<script src="assets/process-tracking/app/assets/xmlsax.js"></script>
+<script src="assets/process-tracking/app/assets/xmlw3cdom.js"></script>
+<script src="assets/process-tracking/app/assets/xmlxpath.js"></script>
+
+<script src="assets/process-tracking/app/lib/bpmn.js"></script>
+<script src="assets/process-tracking/app/lib/promise.js"></script>
+<script src="assets/process-tracking/app/lib/diagram.js"></script>
+<script src="assets/process-tracking/app/lib/model.js"></script>
+<script src="assets/process-tracking/app/main.js"></script>
