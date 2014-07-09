@@ -53,7 +53,7 @@
                     name: '=',
                     onClick: '='
                 },
-                template: '<svg id="bpmn-diagram" style="width: 100%; margin-bottom: 20px"><defs></defs></svg>',
+                template: '<svg id="bpmn-diagram" style="height:100%;width:100%"><defs><marker id="markerArrow" markerWidth="13" markerHeight="13" refx="10" refy="6" orient="auto"><path d="M2,2 L2,11 L10,6 L2,2" style="fill: #000000;" /></marker></defs></svg>',
                 link: function (scope) {
                     new bonitasoft.BBPMN("assets/process-tracking/app/assets/studioFigures/").bootstrap(scope.definitionId, scope.instanceId, scope.name, scope.onClick);
                 }
