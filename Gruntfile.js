@@ -80,7 +80,7 @@ module.exports = function (grunt) {
             server: {
                 proxies: [
                     {
-                        context: [ '/bonita/API', '/bonita/portal/'],
+                        context: [ '/bonita/API', '/bonita/portal/', '/bpmn-loader'],
                         host: 'localhost',
                         port: 8080,
                         https: false,

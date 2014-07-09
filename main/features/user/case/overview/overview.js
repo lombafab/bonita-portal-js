@@ -28,10 +28,8 @@
                     name: '='
                 },
                 template: '<svg id="bpmn-diagram" style="height:100%;width:100%"><defs></defs></svg>',
-                link: function(scope, element, attrs) {
-                    var tracker = new bonitasoft.BBPMN();
-                    console.log(scope);
-                    tracker.bootstrap(scope.definitionId, scope.instanceId, scope.name);
+                link: function(scope) {
+                    new bonitasoft.BBPMN("assets/process-tracking/app/assets/studioFigures/").bootstrap(scope.definitionId, scope.instanceId, scope.name);
                 }
             };
         });

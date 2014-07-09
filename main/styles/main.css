@@ -77,3 +77,18 @@ body {
     border-bottom: 0;
   }
 }
+
+.participant {
+    fill: lightgray;
+    stroke: black;
+}
+
+.lane {
+    fill: whitesmoke;
+    stroke: black;
+}
+
+.edge {
+    stroke: black;
+    fill: none;
+}
