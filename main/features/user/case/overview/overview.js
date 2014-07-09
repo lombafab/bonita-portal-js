@@ -21,26 +21,20 @@
             $scope.case = Case.get({ id: $scope.context.instanceId, d: 'processDefinitionId' });
             $scope.updateDetails = function(shape) {
                 return function(event) {
-                    event.target.classList.add('highlight')
+                    event.target.classList.add('highlight');
+                    $scope.flownode = shape.name;
                     $scope.journal = FlowNode.search({
                         p: 0,
                         c: 10,
                         f: ["name=" + shape.name, "processId=" + $scope.context.definitionId],
-                        d: ['actorId', 'assigned_id']
+                        d: ['actorId', 'assigned_id', 'executedBy']
                     });
                     $scope.archives = ArchivedFlowNode.search({
                         p: 0,
                         c: 10,
                         f: ["name=" + shape.name, "processId=" + $scope.context.definitionId],
-                        d: ['actorId', 'assigned_id']
+                        d: ['actorId', 'assigned_id', 'executedBy']
                     });
-                    function updateDisplayedName(flownodes) {
-                        if (flownodes.result.length > 0) {
-                            $scope.flownode = flownodes.result[0].displayName;
-                        }
-                    }
-                    $scope.journal.$promise.then(updateDisplayedName);
-                    $scope.archives.$promise.then(updateDisplayedName);
                 };
             };
         }])
@@ -57,6 +51,11 @@
                 link: function (scope) {
                     new bonitasoft.BBPMN("assets/process-tracking/app/assets/studioFigures/").bootstrap(scope.definitionId, scope.instanceId, scope.name, scope.onClick);
                 }
+            };
+        })
+        .filter('alt', function() {
+            return function(input, alt) {
+                return input || alt;
             };
         });
 })();

@@ -31,7 +31,7 @@
           on-click="updateDetails"></bpmn>
 </section>
 
-<section class="middle" ng-show="journal.pagination.total > 0 || archives.pagination.total > 0">
+<section class="middle animated slideIn" ng-show="journal.pagination.total > 0 || archives.pagination.total > 0">
     <h3>Details for {{ flownode }}</h3>
     <section ng-show="journal.pagination.total > 0">
         <h4>Journal</h4>
@@ -40,7 +40,7 @@
                 <th>State</th>
                 <th>Reached On</th>
                 <th>Priority</th>
-                <th>Executed By</th>
+                <th>Due Date</th>
                 <th>Actor</th>
                 <th>Assigned to</th>
             </tr>
@@ -48,9 +48,9 @@
                 <td>{{ flownode.state }}</td>
                 <td>{{ flownode.reached_state_date }}</td>
                 <td>{{ flownode.priority }}</td>
-                <td>{{ flownode.executedBy }}</td>
+                <td>{{ flownode.dueDate }}</td>
                 <td>{{ flownode.actorId.displayName }}</td>
-                <td>{{ flownode.assigned_id }}</td>
+                <td>{{ flownode.assigned_id.userName | alt:'Nobody' }}</td>
             </tr>
         </table>
     </section>
@@ -60,6 +60,7 @@
             <tr>
                 <th>State</th>
                 <th>Reached On</th>
+                <th>Archived On</th>
                 <th>Priority</th>
                 <th>Executed By</th>
                 <th>Actor</th>
@@ -68,10 +69,11 @@
             <tr ng-repeat="flownode in archives.result">
                 <td>{{ flownode.state }}</td>
                 <td>{{ flownode.reached_state_date }}</td>
+                <td>{{ flownode.archivedDate }}</td>
                 <td>{{ flownode.priority }}</td>
-                <td>{{ flownode.executedBy }}</td>
+                <td>{{ flownode.executedBy.userName | alt:'System' }}</td>
                 <td>{{ flownode.actorId.displayName }}</td>
-                <td>{{ flownode.assigned_id }}</td>
+                <td>{{ flownode.assigned_id.userName | alt:'Nobody' }}</td>
             </tr>
         </table>
     </section>
