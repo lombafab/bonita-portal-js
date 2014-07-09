@@ -37,7 +37,7 @@ module.exports = function (grunt) {
                 tasks: ['bowerInstall']
             },
             js: {
-                files: ['<%= portaljs.app %>/features/**/*.js', '<%= portaljs.app %>/commons/**/*.js', '<%= portaljs.app %>/assets/**/*.js', '<%= portaljs.app %>/app.js'],
+                files: ['<%= portaljs.app %>/features/**/*.js', '<%= portaljs.app %>/commons/**/*.js', '<%= portaljs.app %>/app.js'],
                 tasks: ['newer:jshint:all'],
                 options: {
                     livereload: true
