@@ -26,8 +26,7 @@ module.exports = function (grunt) {
         portaljs: {
             // configurable paths
             app: 'main',
-            dist: 'dist',
-            build: 'build'
+            dist: 'dist'
         },
 
         // Watches files for changes and runs tasks based on the changed files
