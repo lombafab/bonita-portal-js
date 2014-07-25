@@ -21,20 +21,16 @@
             $scope.case = Case.get({ id: $scope.context.instanceId, d: 'processDefinitionId' });
             $scope.updateDetails = function(shape) {
                 return function(event) {
+                    var query = {
+                        p: 0,
+                        c: 10,
+                        f: ["name=" + shape.name, "processId=" + $scope.context.definitionId],
+                        d: ['actorId', 'assigned_id', 'executedBy']
+                    };
                     event.target.classList.add('highlight');
                     $scope.flownode = shape.name;
-                    $scope.journal = FlowNode.search({
-                        p: 0,
-                        c: 10,
-                        f: ["name=" + shape.name, "processId=" + $scope.context.definitionId],
-                        d: ['actorId', 'assigned_id', 'executedBy']
-                    });
-                    $scope.archives = ArchivedFlowNode.search({
-                        p: 0,
-                        c: 10,
-                        f: ["name=" + shape.name, "processId=" + $scope.context.definitionId],
-                        d: ['actorId', 'assigned_id', 'executedBy']
-                    });
+                    $scope.journal = FlowNode.search(query);
+                    $scope.archives = ArchivedFlowNode.search(query);
                 };
             };
         }])
