@@ -97,5 +97,8 @@
         }])
         .factory('PersonalData', ['$resource', function ($resource) {
             return $resource(API_PATH + 'identity/personalcontactdata/:id', { id: '@id' });
+        }])
+        .factory('Task', ['$resource', function($resource){
+            return $resource(API_PATH + 'bpm/humanTask/:id', { id: '@id'});
         }]);
 })();
