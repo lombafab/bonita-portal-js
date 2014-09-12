@@ -60,7 +60,7 @@ angular.module('org.bonita.features.user.dashboard', ['org.bonita.common.resourc
             }).$promise.then(function(cases) {
                     $scope.cases = cases.result;
                     $scope.totalCasesOpen = cases.pagination.total;
-                });
+            });
         });
 
         $scope.hover = function(element) {
@@ -71,17 +71,16 @@ angular.module('org.bonita.features.user.dashboard', ['org.bonita.common.resourc
             return new Date(date).toLocaleString();
         }
 
-        $scope.openRestModal = function(size) {
+        $scope.openRestModal = function(url) {
             var modalInstance = $modal.open({
-                templateUrl: 'features/user/dashboard/taskListModalContent.html',
+                templateUrl: 'features/user/dashboard/' + url,
                 controller: ['$scope', '$modalInstance', function ($scope, $modalInstance) {
 
                     $scope.ok = function () {
                         $modalInstance.close();
                     };
 
-                }],
-                size: size
+                }]
             });
         };
 

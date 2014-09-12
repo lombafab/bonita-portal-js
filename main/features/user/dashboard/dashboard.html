@@ -40,7 +40,7 @@
         <legend class="text-primary"><span class="glyphicon glyphicon-th"></span> Apps</legend>
         <div class="panel panel-primary">
             <div class="panel-body">
-                <div id='source-button' class='btn btn-success btn-xs' ng-show="showRest['apps']" ng-click="openRestModal()">{ REST }</div>
+                <div id='source-button' class='btn btn-success btn-xs' ng-show="showRest['apps']" ng-click="openRestModal('appListModalContent.html')">{ REST }</div>
                 <table class="table table-striped table-hover table-condensed">
                     <thead>
                     <tr>
@@ -69,7 +69,7 @@
         <legend class="text-primary"><span class="glyphicon glyphicon-tasks"></span> Available Tasks </legend>
         <div class="panel panel-primary">
             <div class="panel-body">
-                <div id='source-button' class='btn btn-success btn-xs' ng-show="showRest['tasks']" ng-click="openRestModal()">{ REST }</div>
+                <div id='source-button' class='btn btn-success btn-xs' ng-show="showRest['tasks']" ng-click="openRestModal('taskListModalContent.html')">{ REST }</div>
                 <table class="table table-striped table-hover table-condensed">
                     <thead>
                     <tr>
@@ -96,7 +96,7 @@
         <legend class="text-primary"><span class="glyphicon glyphicon-folder-open"></span> &nbsp;&nbsp;Open Cases</legend>
         <div class="panel panel-primary">
             <div class="panel-body">
-                <div id='source-button' class='btn btn-success btn-xs' ng-show="showRest['cases']" ng-click="openRestModal()">{ REST }</div>
+                <div id='source-button' class='btn btn-success btn-xs' ng-show="showRest['cases']" ng-click="openRestModal('openCasesListModalContent.html')">{ REST }</div>
                 <table class="table table-striped table-hover table-condensed">
                     <thead>
                     <tr>
