@@ -76,6 +76,10 @@
             return $resource(API_PATH + 'bpm/case/:id', { id: '@id' });
         }])
 
+        .factory('ArchivedCase', ['$resource', function ($resource) {
+            return $resource(API_PATH + 'bpm/archivedCase/:id', { id: '@id' });
+        }])
+
         .factory('Process', ['$resource', function ($resource) {
             return $resource(API_PATH + 'bpm/process/:id', { id: '@id' });
         }])
@@ -83,22 +87,32 @@
         .factory('HumanTask', ['$resource', function ($resource) {
             return $resource(API_PATH + 'bpm/humanTask/:id', { id: '@id' });
         }])
+
         .factory('I18N', ['$resource', function ($resource) {
             return $resource(API_PATH + 'system/i18ntranslation/');
         }])
+
         .factory('Profile', ['$resource', function ($resource) {
             return $resource(API_PATH + 'portal/profile/:id', { id: '@id' });
         }])
+
         .factory('Membership', ['$resource', function ($resource) {
             return $resource(API_PATH + 'identity/membership/:id', { id: '@id' });
         }])
+
         .factory('ProfessionalData', ['$resource', function ($resource) {
             return $resource(API_PATH + 'identity/professionalcontactdata/:id', { id: '@id' });
         }])
+
         .factory('PersonalData', ['$resource', function ($resource) {
             return $resource(API_PATH + 'identity/personalcontactdata/:id', { id: '@id' });
         }])
+
         .factory('Task', ['$resource', function($resource){
             return $resource(API_PATH + 'bpm/humanTask/:id', { id: '@id'});
+        }])
+
+        .factory('ArchivedTask', ['$resource', function($resource){
+            return $resource(API_PATH + 'bpm/archivedHumanTask/:id', { id: '@id'});
         }]);
 })();

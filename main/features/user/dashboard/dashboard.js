@@ -19,11 +19,13 @@ angular.module('org.bonita.features.user.dashboard', ['org.bonita.common.resourc
                 templateUrl: 'features/user/dashboard/dashboard.html',
                 controller: 'userDashboardCtrl'
             });
-    }]).controller('userDashboardCtrl', [ '$scope', '$modal','loggedUser', 'User', 'Task', 'Process', 'Case', function ($scope, $modal, loggedUser, User, Task, Process, Case) {
+    }]).controller('userDashboardCtrl', [ '$scope', '$modal','loggedUser', 'User', 'Task', 'ArchivedTask', 'Process', 'Case', 'ArchivedCase', function ($scope, $modal, loggedUser, User, Task, ArchivedTask, Process, Case, ArchivedCase) {
         $scope.showRest = [];
         $scope.totalTasksToDo = null;
+        $scope.totalArchivedTasksToDo = null;
         $scope.totalAppsAvailable = null;
         $scope.totalCasesOpen = null;
+        $scope.totalArchivedCase = null;
         $scope.firstname = null;
         $scope.lastname = null;
 
@@ -43,6 +45,15 @@ angular.module('org.bonita.features.user.dashboard', ['org.bonita.common.resourc
                 $scope.tasks = tasks.result;
                 $scope.totalTasksToDo = tasks.pagination.total;
             });
+            ArchivedTask.search({
+                p:0,
+                c:5,
+                f:'assigned_id='+loggedUser.user_id,
+                d:'rootContainerId'
+            }).$promise.then(function(archivedTasks) {
+                    $scope.archivedTasks = archivedTasks.result;
+                    $scope.totalArchivedTasks = archivedTasks.pagination.total;
+            });
             Process.search({
                 p:0,
                 c:5,
@@ -60,6 +71,15 @@ angular.module('org.bonita.features.user.dashboard', ['org.bonita.common.resourc
             }).$promise.then(function(cases) {
                     $scope.cases = cases.result;
                     $scope.totalCasesOpen = cases.pagination.total;
+            });
+            ArchivedCase.search({
+                p:0,
+                c:5,
+                f:'started_by='+loggedUser.user_id,
+                d:'processDefinitionId'
+            }).$promise.then(function(archivedCases) {
+                    $scope.archivedCases = archivedCases.result;
+                    $scope.totalArchivedCases = archivedCases.pagination.total;
             });
         });
 
