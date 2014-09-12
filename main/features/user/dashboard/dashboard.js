@@ -21,6 +21,7 @@ angular.module('org.bonita.features.user.dashboard', ['org.bonita.common.resourc
             });
     }]).controller('userDashboardCtrl', [ '$scope', '$modal','loggedUser', 'User', 'Task', 'ArchivedTask', 'Process', 'Case', 'ArchivedCase', function ($scope, $modal, loggedUser, User, Task, ArchivedTask, Process, Case, ArchivedCase) {
         $scope.showRest = [];
+        $scope.loggedUser = null;
         $scope.totalTasksToDo = null;
         $scope.totalArchivedTasksToDo = null;
         $scope.totalAppsAvailable = null;
@@ -30,6 +31,7 @@ angular.module('org.bonita.features.user.dashboard', ['org.bonita.common.resourc
         $scope.lastname = null;
 
         loggedUser.getLoggedUser().then(function(loggedUser){
+            $scope.loggedUser = loggedUser.user_id;
             User.get({
                 id:loggedUser.user_id
             }).$promise.then(function(user) {
@@ -104,15 +106,15 @@ angular.module('org.bonita.features.user.dashboard', ['org.bonita.common.resourc
             });
         };
 
-        $scope.openDoTask = function (name, version, processId) {
+        $scope.openStartApp = function (name, version, processId, userId) {
             var dialog = $modal.open({
-                templateUrl: 'features/teamManager/users/start-process.html',
-                controller:  ['$scope', '$modalInstance', '$stateParams', '$sce', function ($scope, $modalInstance, $stateParams, $sce) {
+                templateUrl: 'features/user/dashboard/start-process.html',
+                controller:  ['$scope', '$rootScope', '$modalInstance', '$stateParams', '$sce', function ($scope, $rootScope, $modalInstance, $stateParams, $sce) {
                     $scope.cancel = function () {
                         $modalInstance.dismiss('cancel');
                     };
                     $scope.getUrl = function () {
-                        var url = $sce.trustAsResourceUrl('../portal/homepage?ui=form&locale=en&tenant=1#form=' + name + '--' + version + '$entry&process=' + processId + '&autoInstantiate=false&mode=form&userId=' + $stateParams.userId);
+                        var url = $sce.trustAsResourceUrl('../portal/homepage?ui=form&locale=en&tenant=1#form=' + name + '--' + version + '$entry&process=' + processId + '&autoInstantiate=false&mode=form&userId=' + userId);
                         return url;
                     };
                 }],

@@ -55,11 +55,11 @@
                         <td>{{app.displayName}}</td>
                         <td>{{app.version}}</td>
                         <td>{{app.deployedBy.firstname}} {{app.deployedBy.lastname}}</td>
-                        <td><a class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-play"></span></a></td>
+                        <td><a class="btn btn-primary btn-xs" ng-click="openStartApp(app.displayName, app.version, app.id, loggedUser)"><span class="glyphicon glyphicon-play"></span></a></td>
                     </tr>
                     </tbody>
                 </table>
-                <p><a class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-new-window"></span> apps page</a></p>
+                <p><a class="btn btn-danger btn-sm" ng-click=""> <span class="glyphicon glyphicon-new-window"></span> apps page</a></p>
             </div>
         </div>
     </div>

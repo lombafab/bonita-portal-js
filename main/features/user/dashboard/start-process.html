@@ -1,0 +1,15 @@
+<!--<div modal="showModal" close="cancel()">
+<iframe style="height: 400px; width: 100%;" ng-src="{{iFrameUrl}}"></iframe>
+<h1>ss{{iframe.iFrameUrl}}</h1>
+    </div>-->
+<div modal="showModal" close="cancel()">
+    <div class="modal-header">
+        <h4 translate>Start Process</h4>
+    </div>
+    <div class="modal-body">
+        <iframe style="height: 400px; width: 100%;" ng-src="{{getUrl()}}"></iframe>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" ng-click="cancel()" translate>Cancel</button>
+    </div>
+</div>
