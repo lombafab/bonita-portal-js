@@ -106,15 +106,20 @@ angular.module('org.bonita.features.user.dashboard', ['org.bonita.common.resourc
             });
         };
 
-        $scope.openStartApp = function (name, version, processId, userId) {
+        $scope.openStartModal = function (id, processName, processVersion, operationType, taskName) {
             var dialog = $modal.open({
                 templateUrl: 'features/user/dashboard/start-process.html',
-                controller:  ['$scope', '$rootScope', '$modalInstance', '$stateParams', '$sce', function ($scope, $rootScope, $modalInstance, $stateParams, $sce) {
+                controller:  ['$scope', '$modalInstance', '$stateParams', '$sce', function ($scope, $modalInstance, $stateParams, $sce) {
                     $scope.cancel = function () {
                         $modalInstance.dismiss('cancel');
                     };
                     $scope.getUrl = function () {
-                        var url = $sce.trustAsResourceUrl('../portal/homepage?ui=form&locale=en&tenant=1#form=' + name + '--' + version + '$entry&process=' + processId + '&autoInstantiate=false&mode=form&userId=' + userId);
+                        var url = null;
+                        if (operationType == "startApp") {
+                            url = $sce.trustAsResourceUrl('../portal/homepage?ui=form&locale=en&tenant=1#form=' + processName + '--' + processVersion + '$entry&process=' + id + '&autoInstantiate=false&mode=form');
+                        } else {
+                            url = $sce.trustAsResourceUrl('../portal/homepage?ui=form&locale=en&tenant=1#form=' + processName + '--' + processVersion + '--' + taskName +'$entry&task=' + id + '&mode=form&assignTask=true');
+                        }
                         return url;
                     };
                 }],
